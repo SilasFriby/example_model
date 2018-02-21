@@ -17,8 +17,8 @@ source("functions/simulate_GBM.R")
 ######## initialize
 
 x0 <- 100 
-mu <- 0.01
-sigma <- 0.1
+mu <- 0.02
+sigma <- 0.5
 n_sim <- 10
 end_time <- 1
 dt <- 1 / 200
