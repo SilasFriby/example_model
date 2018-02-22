@@ -25,6 +25,24 @@ dt <- 1 / 200
 time_vector <- seq(0, end_time, by = dt)
 
 
+
+######## read stock price data
+
+sp_100_data <- read.table("data/sp_100_jan_feb_2018.csv", 
+                          header = TRUE,
+                          sep = ";", 
+                          dec = ",", 
+                          stringsAsFactors = FALSE)
+
+
+
+
+######## plot closing price
+
+plot(1:dim(sp_100_data)[1], sp_100_data$Close, type = 'l')
+
+
+
 ######## simulate paths from GBM
 
 
