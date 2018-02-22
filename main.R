@@ -77,3 +77,16 @@ plot_gbm <- ggplot(data_plot, aes(time, value)) +
 ggsave(filename = "plots/gbm_paths.png", 
        plot = plot_gbm)
 
+
+#### save simulated paths
+
+write.table(
+  simulated_paths,
+  "results/simulated_paths.csv",
+  sep = ";",
+  dec = ",",
+  row.names = FALSE
+)
+
+
+
