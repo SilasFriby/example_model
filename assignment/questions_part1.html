@@ -260,14 +260,14 @@ Z &amp;= \mathtt{rnorm}(1, 0, 1) \\
 for i <span class="math inline">\(\in\)</span> <span class="math inline">\((1, ..., n)\)</span>
 <span class="math display">\[\begin{aligned}
 Z &amp;= \mathtt{rnorm}(1, 0, 1) \\
-\hat{S}_t &amp;= \hat{S}_{i-1} \exp((\mu - 0.5 \sigma ^ 2) \Delta t + \sigma \sqrt{\Delta t}Z),
+\hat{S}_i &amp;= \hat{S}_{i-1} \exp((\mu - 0.5 \sigma ^ 2) \Delta t + \sigma \sqrt{\Delta t}Z),
 \end{aligned}\]</span>
 <p><strong>Metode C</strong></p>
 <p><span class="math inline">\(\hat{S}_0\)</span> = 100</p>
 for i <span class="math inline">\(\in\)</span> <span class="math inline">\((1, ..., n)\)</span>
 <span class="math display">\[\begin{aligned}
 Z &amp;= \mathtt{rnorm}(1, 0, 1) \\
-\hat{S}_i &amp;= \hat{S}_0 \exp((\mu - 0.5 \sigma ^ 2) t_i + \sigma \sqrt{t} Z),
+\hat{S}_i &amp;= \hat{S}_0 \exp((\mu - 0.5 \sigma ^ 2) t_i + \sigma \sqrt{t_i} Z),
 \end{aligned}\]</span>
 <p><span class="math inline">\(~\)</span></p>
 <div id="questions-monte-carlo-simulation" class="section level2 unnumbered">

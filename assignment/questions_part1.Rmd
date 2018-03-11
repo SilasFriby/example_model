@@ -209,7 +209,7 @@ $\hat{S}_0$ = 100
 for i $\in$ $(1, ..., n)$
 \begin{aligned}
 Z &= \mathtt{rnorm}(1, 0, 1) \\
-\hat{S}_t &= \hat{S}_{i-1} \exp((\mu - 0.5 \sigma ^ 2) \Delta t + \sigma \sqrt{\Delta t}Z),
+\hat{S}_i &= \hat{S}_{i-1} \exp((\mu - 0.5 \sigma ^ 2) \Delta t + \sigma \sqrt{\Delta t}Z),
 \end{aligned}
 
 
@@ -220,7 +220,7 @@ $\hat{S}_0$ = 100
 for i $\in$ $(1, ..., n)$
 \begin{aligned}
 Z &= \mathtt{rnorm}(1, 0, 1) \\
-\hat{S}_i &= \hat{S}_0 \exp((\mu - 0.5 \sigma ^ 2) t_i + \sigma \sqrt{t} Z),
+\hat{S}_i &= \hat{S}_0 \exp((\mu - 0.5 \sigma ^ 2) t_i + \sigma \sqrt{t_i} Z),
 \end{aligned}
 
 $~$
