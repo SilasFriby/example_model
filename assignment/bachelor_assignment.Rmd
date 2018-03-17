@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Model Assumptions, Geometric Brownian Motions and Monte Carlo Simulation"
+title: "Bachelor Assignment - Simulating Reality"
 author: "Silas Furu Friby"
 date: "17 feb 2018"
 output: bookdown::html_document2
@@ -252,7 +252,7 @@ $~$
 
 $~$
 
-# Option pricing using MC Simulation
+# Option pricing {#sec:intro}
 
 $~$
 
@@ -264,3 +264,41 @@ Next up:
 * Compute implicit volatilites and discuss these in comparison with the historic volatility estimated in section \@ref(sec:GBM)
 
 $~$
+
+## Questions: Option pricing {-}
+
+$~$
+
+In order to answer the questions below we need to assume values for the parameters  $\sigma$, $r$ and $q$. I suggest using a maximum likehood estimate for $\sigma$, while choosing a reasonable level for $r$ and $q$. 
+
+5.1 Compute the price of European call and put options using MC simulation. Test the validity of your MC pricing algorithm by comparing your results with prices based on the Black-Scholes formula.
+
+5.2 Use the Black-Scholes formula to price European call and put options options on the S&P 500 index. Compare the resulting prices with observed prices of European call and put. Hint: Observed European call and put prices can be found using the symbol *^SPX*.
+
+5.3 Repeat question 5.2, but this time compare the resulting prices from the Black-Scholes formula with observed prices for American options on the S&P 500 index. Hint: Observed European call and put prices can be found using the symbol *SPY*.
+
+5.4 Compare the results from 5.2 and 5.3 for calls and puts, respectively. In doing so explain the following
+ 
+ i) The relationship between the price of a European and American call option. Consider both the case with and without dividends.
+ ii) The relationship between the price of a European and American put option. Consider both the case with and without dividends.
+ 
+ Hint: Understand the concepts *intrinsic value* and *time value* of an option.
+ 
+
+5.5 Use the Black-Scholes formula to compute *implied* volatilities. Hint: by implied volatility we think of the value $\bar{\sigma}$, such that $C(T - t, S_0, K, r, sigma, q)$ equals the observed option price.
+
+5.6 Plot the implied volatilities against the strike divided by the price of the underlying. How may we interpret this curve? Can you regocnize the so called volatility smile or skew?
+
+5.6 Compare the implied volatilies with volatility estimate based on historic stock prices (the MLE of $\sigma$). In doing so consider the following
+
+  i) How may we interpret the implied volatility and the historic volatility interms of $P$ and $Q$ measures?
+  ii) Given our model assumptions what should the relationship between the implied volatility and the historic volatility be?. Do our observations confirm this relationship?
+
+
+5.7 Compute prices for Asian options using MC simulations. Compare the MC prices for Asian options with MC prices for european options. Explain the relatioship and consider in following while doing so
+
+  i) Is the volatility of the average of the underlying stock higher or lower than the volatility of the underlying stock?
+  ii) How does the relationship from i) affect the relationship between the price of an Asian and European option?
+  
+
+Yderligere: hvordan afhænger options pris af renten? Put-call parity. Hedging eksempler? Goodness of fit test? Hvorfor er vi interesseret i optioner?
