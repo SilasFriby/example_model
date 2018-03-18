@@ -272,15 +272,17 @@ A European call/put provides the owner with the right, but not the obligation to
 
 **American**
 
-An American call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument duing the time period $[t, T]$. Hence an American option has the following payoff function 
+An American call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument at any time point duing the period $[t, T]$. Given an optimal exercise time (stopping time), $\tau$, the payoff equals 
 
 \begin{align}
 \begin{split}
-&\max(S(t) - K, 0) \qquad ( call ) \\
-&\max(K - S(t), 0) \qquad ( put ).
+&\max(S(\tau) - K, 0) \qquad ( call ) \\
+&\max(K - S(\tau), 0) \qquad ( put ).
 \end{split}
 (\#eq:amr)
 \end{align}
+
+In general it is part of the pricing method to find $\tau$.
 
 **Asian**
 

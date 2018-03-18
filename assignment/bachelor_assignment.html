@@ -301,14 +301,15 @@ Z &amp;= \mathtt{rnorm}(1, 0, 1) \\
 \tag{5.1}
 \end{align}\]</span>
 <p><strong>American</strong></p>
-<p>An American call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument duing the time period <span class="math inline">\([t, T]\)</span>. Hence an American option has the following payoff function</p>
+<p>An American call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument at any time point duing the period <span class="math inline">\([t, T]\)</span>. Given an optimal exercise time (stopping time), <span class="math inline">\(\tau\)</span>, the payoff equals</p>
 <span class="math display" id="eq:amr">\[\begin{align}
 \begin{split}
-&amp;\max(S(t) - K, 0) \qquad ( call ) \\
-&amp;\max(K - S(t), 0) \qquad ( put ).
+&amp;\max(S(\tau) - K, 0) \qquad ( call ) \\
+&amp;\max(K - S(\tau), 0) \qquad ( put ).
 \end{split}
 \tag{5.2}
 \end{align}\]</span>
+<p>In general it is part of the pricing method to find <span class="math inline">\(\tau\)</span>.</p>
 <p><strong>Asian</strong></p>
 <p>Opposite to the European and American options, where the payoff depends on the underlying instrument at the time of exercise, the payoff of an Asian option depends on the average price of the underlying over some predefined time interval. Let the time interval be <span class="math inline">\([t, T]\)</span> and the average be the arithmetic average, then the payoff function is given by</p>
 <span class="math display" id="eq:asian">\[\begin{align}
