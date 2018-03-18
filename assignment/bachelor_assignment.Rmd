@@ -256,12 +256,74 @@ $~$
 
 $~$
 
-Next up: 
+In this section we focus on option pricing. In the questions below we encounter European, American and Asian options. Given an initial time, $t$, a fixed maturity, $T$, strike price, $K$, and underlying instument, $S(t)$ we may define what we mean by European, American and Asian options. 
 
-* Pricing of European and Asian options using MC simulation. 
-* Investigate the relationship between European and Asian options. 
-* Compare MC prices of European Options with closed-form prices and observed market prices.
-* Compute implicit volatilites and discuss these in comparison with the historic volatility estimated in section \@ref(sec:GBM)
+**European**
+
+A European call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument at time $T$.Hence, a European option has the following payoff function
+
+\begin{align}
+\begin{split}
+&\max(S(T) - K, 0) \qquad ( call ) \\
+&\max(K - S(T), 0) \qquad ( put ).
+\end{split}
+(\#eq:eur)
+\end{align}
+
+**American**
+
+An American call/put provides the owner with the right, but not the obligation to buy/sell the underlying instrument duing the time period $[t, T]$. Hence an American option has the following payoff function 
+
+\begin{align}
+\begin{split}
+&\max(S(t) - K, 0) \qquad ( call ) \\
+&\max(K - S(t), 0) \qquad ( put ).
+\end{split}
+(\#eq:amr)
+\end{align}
+
+**Asian**
+
+Opposite to the European and American options, where the payoff depends on the underlying instrument at the time of exercise, the payoff of an Asian option depends on the average price of the underlying over some predefined time interval. Let the time interval be $[t, T]$ and the average be the arithmetic average, then the payoff function is given by
+
+\begin{align}
+\begin{split}
+&\max\left(\frac{1}{T - t} \int_t^T S(u) du - K, 0\right) \qquad ( call ) \\
+&\max\left(K - \frac{1}{T - t} \int_t^T S(u) du, 0\right) \qquad ( put ).
+\end{split}
+(\#eq:asian)
+\end{align}
+
+**Black-Scholes Formula**
+
+Our model assumptions, cf. section \@ref(sec:intro), imply the existence of the famous Black-Scoles formula, which provides an analytical expression of for the arbetrage-free price of a European call option, which is given by
+
+\begin{equation}
+\begin{split}
+C(t, S(t), K, r, \sigma) &= E^Q\left[ e^{-\int_t^T \; r \; du} \max(S(T) - K, 0) \; \big| \; \mathcal{F}_t \right] \\ 
+&= e^{-r (T - t)} \left( S(t) e^{(r - q) (T - t)} \phi(d_1) - K \phi(d_2)  \right)
+\end{split}
+(\#eq:bs)
+\end{equation}
+
+with 
+
+\begin{equation}
+\begin{split}
+d_1 &= \frac{1}{\sigma \sqrt{T- t}} \left( \log\left(\frac{S(t)}{K}\right) + \left( r - q + \frac{1}{2} \sigma ^ 2 \right) (T -t)   \right) \\
+d_2 &= d_1 - \sigma \sqrt{T - t}
+\end{split}
+(\#eq:bs-d)
+\end{equation}
+
+where $S(t)$, $K$, $r$, $\sigma$ and $q$ are the price of the underlying stock, the strike, the instantaeous market short rate, the stock volatility and the stock dividend.
+
+Furthermore we have the so-called *put-call parity*, which provides a connection between the price of a European call and put option. Let $P(t, S(t), K, r, \sigma)$ denote the price of a European put option, then
+
+\begin{equation}
+P(t, S(t), K, r, \sigma) = C(t, S(t), K, r, \sigma) - S(t) + K e^{-r(T - t)} + e^{q(T-t)}
+(\#eq:put-call)
+\end{equation}
 
 $~$
 
@@ -269,36 +331,45 @@ $~$
 
 $~$
 
-In order to answer the questions below we need to assume values for the parameters  $\sigma$, $r$ and $q$. I suggest using a maximum likehood estimate for $\sigma$, while choosing a reasonable level for $r$ and $q$. 
+<!-- In order to answer the questions below we need to assume values for $S_0$, $\sigma$, $r$ and $q$. I suggest using a maximum likehood estimate for $\sigma$, while choosing a reasonable level for $r$ and $q$.  -->
 
-5.1 Compute the price of European call and put options using MC simulation. Test the validity of your MC pricing algorithm by comparing your results with prices based on the Black-Scholes formula.
+5.1 Explain why financial options are interesting. Hint: there are two main aspects: *speculation* and *hedging*.
 
-5.2 Use the Black-Scholes formula to price European call and put options options on the S&P 500 index. Compare the resulting prices with observed prices of European call and put. Hint: Observed European call and put prices can be found using the symbol *^SPX*.
+5.2 Prove the put-call parity assuming no dividends (q = 0). Hint: Construct a replicating portfolio for a European put option using the underlying stock, a bank account and a European call option.
 
-5.3 Repeat question 5.2, but this time compare the resulting prices from the Black-Scholes formula with observed prices for American options on the S&P 500 index. Hint: Observed European call and put prices can be found using the symbol *SPY*.
+5.3 Compute the price of European call and put options using MC simulation for different values of $S_t$, $T$, $\sigma$ and $r$. This should give you an idea of the risk exposure to changes in the underlying stock price and the sensitivity to the uncertainty in model parameters. Explain the intuition behind the results. Furthermore test the validity of your MC pricing algorithm by comparing your results with prices based on the Black-Scholes formula.
 
-5.4 Compare the results from 5.2 and 5.3 for calls and puts, respectively. In doing so explain the following
+5.4 Use the Black-Scholes formula to price European call and put options options on the S&P 500 index. Compare the resulting prices with observed prices of European call and put options. Hint: Observed European call and put prices can be found using the symbol *^SPX*.
+
+5.5 Repeat question 5.2, but this time compare the resulting prices from the Black-Scholes formula with observed prices for American options on the S&P 500 index. Hint: Observed American call and put prices can be found using the symbol *SPY*.
+
+5.6 Compare the results from 5.2 and 5.3 for calls and puts, respectively. In doing so explain the following
  
  i) The relationship between the price of a European and American call option. Consider both the case with and without dividends.
  ii) The relationship between the price of a European and American put option. Consider both the case with and without dividends.
  
  Hint: Understand the concepts *intrinsic value* and *time value* of an option.
  
+5.7 Use the Black-Scholes formula to compute *implied* volatilities. Hint: by implied volatility we think of the value $\bar{\sigma}$, such that $C(t, S_t, K, r, \bar{\sigma}, q)$ equals the observed option price.
 
-5.5 Use the Black-Scholes formula to compute *implied* volatilities. Hint: by implied volatility we think of the value $\bar{\sigma}$, such that $C(T - t, S_0, K, r, sigma, q)$ equals the observed option price.
+5.8 Plot the implied volatilities against the strike divided by the price of the underlying. How may we interpret this curve? Can you regocnize the so called volatility smile or skew?
 
-5.6 Plot the implied volatilities against the strike divided by the price of the underlying. How may we interpret this curve? Can you regocnize the so called volatility smile or skew?
-
-5.6 Compare the implied volatilies with volatility estimate based on historic stock prices (the MLE of $\sigma$). In doing so consider the following
+5.9 Compare the implied volatilies with the volatility estimate based on historic stock prices (the MLE of $\sigma$). In doing so consider the following
 
   i) How may we interpret the implied volatility and the historic volatility interms of $P$ and $Q$ measures?
   ii) Given our model assumptions what should the relationship between the implied volatility and the historic volatility be?. Do our observations confirm this relationship?
 
 
-5.7 Compute prices for Asian options using MC simulations. Compare the MC prices for Asian options with MC prices for european options. Explain the relatioship and consider in following while doing so
+5.10 Compute prices for Asian options using MC simulations. Compare the MC prices for Asian options with MC prices for European options. Explain the relatioship and consider in following while doing so
 
   i) Is the volatility of the average of the underlying stock higher or lower than the volatility of the underlying stock?
   ii) How does the relationship from i) affect the relationship between the price of an Asian and European option?
   
 
-Yderligere: hvordan afhænger options pris af renten? Put-call parity. Hedging eksempler? Goodness of fit test? Hvorfor er vi interesseret i optioner?
+$~$
+
+**Next up**: Bonds and stochastic interest rates
+
+$~$
+
+
