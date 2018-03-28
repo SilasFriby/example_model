@@ -164,7 +164,7 @@ $~$
 
 3.9 How do the estimates, $\hat{\mu}$ and $\hat{\sigma}$, from (i) and (ii) differ from each other? Is this what we would expect based on the observation periods?
 
-3.10 Derive closed-form expressions for the variance of $\hat{\mu}$ and $\hat{\sigma}$. Should we be worried about the variance of $\mu$ in respect to (i) the prediction of future stock prices? (ii) risk-neutral pricing of financial derivatives, which depend on the stock price?
+3.10 Derive closed-form expressions for the variance of $\hat{\mu}$ and $\hat{\sigma}$. Should we be worried about the variance of $\mu$ in respect to (i) the prediction of future stock prices? (ii) risk-neutral pricing of financial derivatives, which depend on the stock price? Hint: In order to find the variance of $\hat{\mu}$ and $\hat{\sigma}$ derive the covariance matrix for $(\hat{\mu}, \hat{\sigma})$ using the Delta method.
 
 
 
@@ -323,7 +323,7 @@ where $S(t)$, $K$, $r$, $\sigma$ and $q$ are the price of the underlying stock, 
 Furthermore we have the so-called *put-call parity*, which provides a connection between the price of a European call and put option. Let $P(t, S(t), K, r, \sigma)$ denote the price of a European put option, then
 
 \begin{equation}
-P(t, S(t), K, r, \sigma) = C(t, S(t), K, r, \sigma) - S(t) + K e^{-r(T - t)} + e^{q(T-t)}
+P(t, S(t), K, r, \sigma) = C(t, S(t), K, r, \sigma) - e^{-q(T-t)}S(t) + K e^{-r(T - t)} 
 (\#eq:put-call)
 \end{equation}
 
@@ -333,7 +333,6 @@ $~$
 
 $~$
 
-<!-- In order to answer the questions below we need to assume values for $S_0$, $\sigma$, $r$ and $q$. I suggest using a maximum likehood estimate for $\sigma$, while choosing a reasonable level for $r$ and $q$.  -->
 
 5.1 Explain why financial options are interesting. Hint: there are two main aspects: *speculation* and *hedging*.
 
