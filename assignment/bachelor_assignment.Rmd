@@ -369,8 +369,90 @@ $~$
 
 $~$
 
-**Next up**: Bonds and stochastic interest rates
+# Asset Liability Management {#sec:alm}
 
 $~$
+
+For the questions below we follow the model framework presented in section 2 of the paper *Risk analysis and valuation of life insurance contracts: Combining actuarial and financial approaches* (ALM paper). Regarding the simplified balance sheet of the pension company presented in the ALM paper we remove the quantity $R$, hence the liability side consists only of the liabilities $L$ and the free capital $B$. The ALM paper compares different types of liability models, however we shall only consider the *Point-to-point* model, which is presented in the first part of section 2.4.
+
+For our numerical experiments we follow the setup presented in section 4 of the ALM paper. However, use your own estimates for the drift and volatility of the stock price (which was found in earlier in the assignment) and for the remaining parameters we use the values presented below.
+
+\begin{align}
+&S(0) = 100 \\
+&r(0) = 0.01 \\
+&a = 0.15 \\
+&b = 0.042\\
+&\lambda = -0.23\\
+&\sigma_r = 0.01\\
+&\rho = -0.15\\
+\end{align}
+
+
+In order to answer the questions below regarding risk management we need to define what we mean by the *solvency capital requirement* (SCR) and the *coverage ratio* (CR). Roughly speaking we define the SCR as the free capital needed today in order to secure that the risk of default for the company during the next year is less than 99.5%. In order to mathematically define the SCR we need to define the one-year loss at time $t$
+
+\begin{align}
+Loss(t) = B(t) - e^{-\int_t^{t+1} r (s) ds} B(t + 1) 
+(\#eq:loss)
+\end{align}
+
+We now define the SCR as the 99.5% quantile of the loss distribution. Hence
+
+\begin{align}
+SCR(t) = argmin_x\left(P(Loss(t) > x) \leq 1 - 0.995 \right). 
+(\#eq:scr)
+\end{align}
+
+Based on equation \@ref(eq:scr) we define the CR as
+
+\begin{align}
+CR(t) = \frac{B(t)}{SCR(t)}.
+(\#eq:cr)
+\end{align}
+
+Furthermore, we say the company is *insolvent* at time $t$ if $CR(t) < 1$. 
+
+$~$
+
+
+## Questions: Asset Liability Management {-}
+
+$~$
+
+*Interest rate model*
+
+6.1 Give a brief interpretation of the interest rate parameters $a$, $b$ and $\sigma_r$. 
+
+*Assets*
+
+6.2 Write a simulation scheme that simulates the developement of $A(t)$ in the period $[0, T]$. 
+
+6.3 Plot the expected value of $A(t)$ together with the $0.5\%$, $50\%$ and $99.5\%$ quantiles of $A(t)$ for $t \in [0, T]$. Do so for different combinations of $w_{\beta}$, $w_S$ and $w_B$. Explain why the expectation of $A$ is notably higher than the median of $A$ for "risky" portfolios. (Hint: look at how the asset distribution develops over time). 
+
+6.4 Compute the probability of $A(T) < L(T)$ for different combinations of $w_{\beta}$, $w_S$ and $w_B$. Comment on the result. You may also experiment with different parameter values for the stock price and short rate and see how changes in those affect the value of $P(A(T) < L(T))$.
+
+*Risk Management*
+
+For the following questions let $w_{\beta} = 0$, $w_S = 0.1$ and $w_B = 0.9$.
+
+6.5 Briefly describe the intuition behind equation \@ref(eq:loss), \@ref(eq:scr) and \@ref(eq:cr).
+
+6.6 Plot the $0.5\%$, $50\%$ and $99.5\%$ quantiles of $B(t)$ for $t \in [0, T]$. Furthermore, compute the solvency capital requirement, the solvency coverage ration and the probability of becoming insolvent for $t \in [0, T)$.
+
+As you may have seen by answering the above questions the company is not able to achieve coverage ratio above one given the current invenstment portfolio. For that reason the next questions look at different ways to hedge the interest rate risk, which the company is exposed to.
+
+6.7 Perform a hedge using zero-coupon bonds. How does that affect the quantities from question 6.6?
+
+6.8 Perform a hedge using zero-coupon swaps. How does that affect the quatities from question 6.6? (Hint: The slide show from ATP defines af zero-coupon swap)
+
+*Fair price of insurance contract*
+
+Another company is interested in bying our company, but this company thinks it is unclear whether the insured has been promised a guaranteed interest rate or a guaranteed benefit.
+
+6.9 Compute the fair price of the liabilities at time zero in both the case of an interest rate guarantee and in the case of a benefit guarantee. Hint: In the guaranteed interest rate case we may think of the value of the bonus option as a sum of call options.
+
+*Bonus and equity*
+
+6.10 The life insurance company takes on a risk and it is therefore entitled to some of the free capital. Compute the fair bonus rate $\eta$. Hint: See the definition of $\eta$ in the ALM paper. 
+
 
 
